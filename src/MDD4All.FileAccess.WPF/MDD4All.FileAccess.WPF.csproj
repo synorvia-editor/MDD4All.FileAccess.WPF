@@ -6,7 +6,11 @@
         <EnableWindowsTargeting>true</EnableWindowsTargeting>
         <SignAssembly>True</SignAssembly>
         <AssemblyOriginatorKeyFile>MDD4All_Github.snk</AssemblyOriginatorKeyFile>
-        <Version>1.0.0.0</Version>
+        <!-- The id on nuget.org belongs to oalt, who published 2.0.0.3 from his own
+             repository. This fork carries changes of ours, so it goes out under a name of
+             its own. The library, the author and the copyright stay his. -->
+        <PackageId>Synorvia.FileAccess.WPF</PackageId>
+        <Version>2.0.0.0</Version>
         <Company>MDD4All.de</Company>
         <Description>WPF implementation of FileAccess contracts using IoC design pattern.</Description>
         <Copyright>(c) MDD4All.de</Copyright>
@@ -16,6 +20,17 @@
         <Authors>Dr. Oliver Alt</Authors>
     </PropertyGroup>
 
+    <PropertyGroup>
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+        <EmbedUntrackedSources>true</EmbedUntrackedSources>
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
+    </ItemGroup>
+
     <ItemGroup>
       <None Include="Nuget.md">
         <Pack>True</Pack>
@@ -23,6 +38,10 @@
       </None>
     </ItemGroup>
 
+    <!-- Waiting on a package. 2.0.1.4 is the newest on nuget.org and it is older than
+         oalt's own dev branch: IFileSaver there takes an initial directory and a title,
+         which this code passes. Building against the published one fails. He would have to
+         publish the contracts again before a package can be built from here. -->
     <ItemGroup>
         <PackageReference Include="MDD4All.FileAccess.Contracts" Version="2.0.1.4" />
     </ItemGroup>
